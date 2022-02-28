@@ -4,22 +4,20 @@ const fs = require('fs');
 http.createServer(function(request, response) {
     console.log('request come', request.url);
     if (request.url === '/') {
-        const html = fs.readFileSync('test.html', 'utf8');
-        response.writeHead(200, {
-            'Content-Type': 'text/html',
-            // 'Content-Security-Policy': 'default-src http: https:', // 只能使用外链js
-            // 'Content-Security-Policy': 'default-src \'self\'' //只能使用本域名的外链js
-            // 'Content-Security-Policy': 'default-src \'self\' https://s.momocdn.com/' //只能使用本域名的外链js
-            // 'Content-Security-Policy': 'default-src \'self\'; report-uri /report', //不加载资源 && 报告错误
-            // 'Content-Security-Policy-Report-only': 'default-src \'self\'; report-uri /report' //只报告错误
-            
+        // response.writeHead(200, {
+        //     'Location': '/new'
+        // })
+        // 临时跳转 后续路由可能还会修改
+        response.writeHead(302, {
+            'Location': '/new'
         })
-        response.end(html);
-    } else {
+        response.end();
+    }
+    if (request.url === '/new') {
         response.writeHead(200, {
-            'Content-Type': 'application/javascript'
+            'Content-Type': 'text/html'
         })
-        response.end('console.log("load url")')
+        response.end('<div>this is html content</div>')
     }
     
 }).listen(8888);
