@@ -4,14 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>http跨域请求的限制与解决</title>
+    <title>HTTP CORS跨域限制以及预请求验证</title>
 </head>
 <body>
-    <div>http跨域请求的限制与解决</div>
+    <div>HTTP CORS跨域限制以及预请求验证</div>
     <script>
-        let xhr = new XMLHttpRequest;
-        xhr.open('GET', 'http://127.0.0.1:8887');
-        xhr.send();
+        fetch('http://127.0.0.1:8887', {
+            method: 'GET',
+            headers: {
+                // 'Content-Type': 'text/plain'
+                // 'X-Test-Cors': '123'
+            }
+        })
     </script>
 </body>
 </html>
