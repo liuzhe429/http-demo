@@ -9,8 +9,15 @@ http.createServer(function(request, response) {
             'Content-Type': 'text/html'
         })
         response.end(html);
-    } else {
-        response.end('server');
+    }
+    if (request.url === '/script.js') {
+        console.log('request come', request.url);
+        response.writeHead(200, {
+            'Content-Type': 'text/javascript',
+            'Cache-Control': 'max-age=200'
+        })
+        // response.end('console.log("script loaded")');
+        response.end('console.log("script loaded twice")');
     }
     
 }).listen(8888);
