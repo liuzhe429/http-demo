@@ -11,6 +11,10 @@ http.createServer(function(request, response) {
         response.writeHead(302, {
             'Location': '/new'
         })
+        // 301 永久重定向 慎重！！！！
+        // response.writeHead(302, {
+        //     'Location': '/new'
+        // })
         response.end();
     }
     if (request.url === '/new') {
