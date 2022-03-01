@@ -4,17 +4,12 @@ const fs = require('fs');
 http.createServer(function(request, response) {
     console.log('request come', request.url);
     if (request.url === '/') {
-        // response.writeHead(200, {
-        //     'Location': '/new'
-        // })
         // 临时跳转 后续路由可能还会修改
+        // 301 永久重定向 慎重！！！！
+        // 200 无用
         response.writeHead(302, {
             'Location': '/new'
         })
-        // 301 永久重定向 慎重！！！！
-        // response.writeHead(302, {
-        //     'Location': '/new'
-        // })
         response.end();
     }
     if (request.url === '/new') {
