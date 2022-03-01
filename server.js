@@ -14,7 +14,7 @@ http.createServer(function(request, response) {
         console.log('request come', request.url);
         response.writeHead(200, {
             'Content-Type': 'text/javascript',
-            'Cache-Control': 'max-age=200'
+            'Cache-Control': 'max-age=10'
         })
         // response.end('console.log("script loaded")');
         response.end('console.log("script loaded twice")');
