@@ -7,12 +7,14 @@ http.createServer(function(request, response) {
         const html = fs.readFileSync('test.html', 'utf8');
         response.writeHead(200, {
             'Content-Type': 'text/html',
+            // 'Connection': 'close'
         })
         response.end(html);
     } else {
         const jpg = fs.readFileSync('test.jpg');
         response.writeHead(200, {
             'Content-Type': 'image/jpg',
+            // 'Connection': 'close'
         });
         response.end(jpg);
     }
