@@ -14,7 +14,7 @@ http.createServer(function(request, response) {
         response.writeHead(200, {
             'Content-Type': 'image/jpg',
         });
-        response.end(jpg)
+        response.end(jpg);
     }
     
 }).listen(8888);
