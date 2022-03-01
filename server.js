@@ -13,31 +13,31 @@ http.createServer(function(request, response) {
     if (request.url === '/script.js') {
         console.log('request come', request.url);
 
-        response.writeHead(200, {
-            'Content-Type': 'text/javascript',
-            'Cache-Control': 'max-age=200000, no-cache',
-            'Last-Modified': '124',
-            'Etag': '777'
-        })
-        response.end('console.log("script loaded")');
-        // const etag = request.headers['if-none-match'];
-        // if (etag === '777') {
-        //     response.writeHead(304, {
-        //         'Content-Type': 'text/javascript',
-        //         'Cache-Control': 'max-age=200000, no-cache',
-        //         'Last-Modified': '124',
-        //         'Etag': '777'
-        //     });
-        //     response.end('111');
-        // } else {
-        //     response.writeHead(200, {
-        //         'Content-Type': 'text/javascript',
-        //         'Cache-Control': 'max-age=200000, no-cache',
-        //         'Last-Modified': '124',
-        //         'Etag': '777'
-        //     })
-        //     response.end('console.log("script loaded")');
-        // }
+        // response.writeHead(200, {
+        //     'Content-Type': 'text/javascript',
+        //     'Cache-Control': 'max-age=200000, no-cache',
+        //     'Last-Modified': '124',
+        //     'Etag': '777'
+        // })
+        // response.end('console.log("script loaded")');
+        const etag = request.headers['if-none-match'];
+        if (etag === '777') {
+            response.writeHead(304, {
+                'Content-Type': 'text/javascript',
+                'Cache-Control': 'max-age=200000, no-cache',//no-store
+                'Last-Modified': '124',
+                'Etag': '777'
+            });
+            response.end('111');
+        } else {
+            response.writeHead(200, {
+                'Content-Type': 'text/javascript',
+                'Cache-Control': 'max-age=200000, no-cache', //no-store
+                'Last-Modified': '124',
+                'Etag': '777'
+            })
+            response.end('console.log("script loaded")');
+        }
     }
     
 }).listen(8888);
